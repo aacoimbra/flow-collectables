@@ -27,8 +27,8 @@ transaction(packID: UInt32, cardID: UInt32) {
 
         let packRef: &BBCollectables.Pack = self.adminRef.borrowPack(packID: packID)
 
-        let mintedCard: @BBCollectables.NFT <-! packRef.mintBBNft(cardID: cardID)
+        let mintedCard: @NonFungibleToken.NFT <-! packRef.mintBBNft(cardID: cardID) as! @NonFungibleToken.NFT
 
-        self.receiverRef.deposit(token: <- mintedCard )
+        self.receiverRef.deposit(token: <- mintedCard)
     }
 }
